@@ -13,7 +13,7 @@ const navigation = [
   { name: "Graph View", href: "/graph", icon: Network },
   { name: "ROPA & Mapping", href: "/activities", icon: List }, // Using List icon for Activities
   { name: "Manual Entry", href: "/manual", icon: ClipboardList },
-  { name: "Inventory Import", href: "/inventory", icon: UploadCloud },
+  { name: "Import", href: "/import", icon: Database },
 ]
 
 export function Sidebar() {

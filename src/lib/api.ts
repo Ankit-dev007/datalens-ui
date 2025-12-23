@@ -36,8 +36,11 @@ export const api = {
     // Module 2: Data Discovery & Mapping
     saveActivity: (payload: any) => fetchJson('/api/activities', { method: 'POST', body: JSON.stringify(payload) }), // Note: Need to create this endpoint in backend if not exists, or reuse save logic
     getActivities: () => fetchJson('/api/activities'), // Same note
+    getActivity: (id: string) => fetchJson(`/api/activities/${id}`),
     getManualTemplates: () => fetchJson('/api/manual/templates'),
-    submitManualEntry: (payload: any) => fetchJson('/api/manual/entry', { method: 'POST', body: JSON.stringify(payload) }),
+    submitManualEntry: (payload: any) => fetchJson('/api/data-assets', { method: 'POST', body: JSON.stringify(payload) }),
+    getDataAssets: () => fetchJson('/api/data-assets'),
+    getDataAssetsByActivity: (id: string) => fetchJson(`/api/data-assets/activity/${id}`),
     uploadInventoryCSV: (csvText: string, owner?: string) => fetchJson(`/api/inventory/upload?owner=${owner || ''}`, {
         method: 'POST',
         headers: { 'Content-Type': 'text/csv' },

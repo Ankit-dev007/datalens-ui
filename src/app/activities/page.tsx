@@ -113,7 +113,9 @@ export default function ActivitiesPage() {
                             return (
                                 <tr key={a.activityId} className="hover:bg-gray-50">
                                     <td className="px-6 py-4 font-medium text-gray-900">
-                                        {a.name}
+                                        <Link href={`/activities/view?id=${a.activityId}`} className="hover:text-blue-600 hover:underline">
+                                            {a.name}
+                                        </Link>
                                     </td>
                                     <td className="px-6 py-4 text-gray-700">
                                         {a.businessProcess}

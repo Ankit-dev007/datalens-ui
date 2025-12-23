@@ -15,7 +15,7 @@ export default function ManualEntryPage() {
         category: '',
         volume: 0,
         ownerUserId: '',
-        processActivityId: '',
+        processingActivityId: '',
         protection: 'Cleartext'
     });
 
@@ -95,9 +95,9 @@ export default function ManualEntryPage() {
                                 Processing Activity *
                             </label>
                             <select
-                                name="processActivityId"
+                                name="processingActivityId"
                                 required
-                                value={formData.processActivityId}
+                                value={formData.processingActivityId}
                                 onChange={handleChange}
                                 className={selectClass}
                             >
