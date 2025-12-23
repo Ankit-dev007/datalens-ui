@@ -25,6 +25,7 @@ export default function DataAssetInventoryPage() {
                         <tr>
                             <th className="px-6 py-3 text-left font-semibold text-gray-600">Name</th>
                             <th className="px-6 py-3 text-left font-semibold text-gray-600">Category</th>
+                            <th className="px-6 py-3 text-left font-semibold text-gray-600">Data Classification</th>
                             <th className="px-6 py-3 text-left font-semibold text-gray-600">Type</th>
                             <th className="px-6 py-3 text-left font-semibold text-gray-600">Volume</th>
                             <th className="px-6 py-3 text-left font-semibold text-gray-600">Owner</th>
@@ -36,6 +37,9 @@ export default function DataAssetInventoryPage() {
                             <tr key={asset.id} className="hover:bg-gray-50">
                                 <td className="px-6 py-4 font-medium text-gray-900">{asset.name}</td>
                                 <td className="px-6 py-4">{asset.dpdpCategory}</td>
+                                <td className="px-6 py-4 text-sm text-gray-500 max-w-xs truncate" title={Array.isArray(asset.personalDataCategories) ? asset.personalDataCategories.join(', ') : ''}>
+                                    {Array.isArray(asset.personalDataCategories) ? asset.personalDataCategories.join(', ') : '-'}
+                                </td>
                                 <td className="px-6 py-4 text-gray-500">{asset.dataType}</td>
                                 <td className="px-6 py-4 text-gray-500">{asset.volume}</td>
                                 <td className="px-6 py-4 text-gray-500">{asset.ownerUserId}</td>
@@ -44,7 +48,7 @@ export default function DataAssetInventoryPage() {
                         ))}
                          {assets.length === 0 && (
                             <tr>
-                                <td colSpan={6} className="px-6 py-8 text-center text-gray-500">
+                                <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
                                     No data assets registered.
                                 </td>
                             </tr>

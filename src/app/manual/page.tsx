@@ -16,7 +16,8 @@ export default function ManualEntryPage() {
         volume: 0,
         ownerUserId: '',
         processingActivityId: '',
-        protection: 'Cleartext'
+        protection: 'Cleartext',
+        personalDataCategories: '' // [NEW]
     });
 
     useEffect(() => {
@@ -34,7 +35,8 @@ export default function ManualEntryPage() {
         try {
             await api.submitManualEntry({
                 ...formData,
-                volume: Number(formData.volume)
+                volume: Number(formData.volume),
+                personalDataCategories: formData.personalDataCategories.split(',').map(s => s.trim()).filter(Boolean)
             });
             alert('Manual data asset registered successfully!');
             router.push('/activities');
@@ -184,6 +186,22 @@ export default function ManualEntryPage() {
                                 Used for compliance risk and sensitivity assessment.
                             </p>
                         </div>
+                    </div>
+
+                    <div className="mt-6">
+                        <label className="block text-sm font-medium text-gray-700">
+                            Personal Data Categories
+                        </label>
+                        <input
+                            name="personalDataCategories"
+                            placeholder="e.g. Name, Email, Mobile Number"
+                            value={formData.personalDataCategories}
+                            onChange={(e) => setFormData({...formData, personalDataCategories: e.target.value})}
+                            className={inputClass}
+                        />
+                         <p className="mt-1 text-xs text-gray-500">
+                            Types of personal data contained in this data asset.
+                        </p>
                     </div>
 
                     <div className="grid grid-cols-3 gap-6 mt-6">

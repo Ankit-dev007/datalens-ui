@@ -41,6 +41,12 @@ export const api = {
     submitManualEntry: (payload: any) => fetchJson('/api/data-assets', { method: 'POST', body: JSON.stringify(payload) }),
     getDataAssets: () => fetchJson('/api/data-assets'),
     getDataAssetsByActivity: (id: string) => fetchJson(`/api/data-assets/activity/${id}`),
+
+    // Hierarchy
+    getSectors: () => fetchJson('/api/hierarchy/sectors'),
+    getProcesses: (sectorId: number) => fetchJson(`/api/hierarchy/processes?sectorId=${sectorId}`),
+    getSubProcesses: (processId: number) => fetchJson(`/api/hierarchy/sub-processes?processId=${processId}`),
+    getActivityTemplates: (subProcessId: number) => fetchJson(`/api/hierarchy/activity-templates?subProcessId=${subProcessId}`),
     uploadInventoryCSV: (csvText: string, owner?: string) => fetchJson(`/api/inventory/upload?owner=${owner || ''}`, {
         method: 'POST',
         headers: { 'Content-Type': 'text/csv' },
