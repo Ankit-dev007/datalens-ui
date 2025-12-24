@@ -41,6 +41,11 @@ export const api = {
     submitManualEntry: (payload: any) => fetchJson('/api/data-assets', { method: 'POST', body: JSON.stringify(payload) }),
     getDataAssets: () => fetchJson('/api/data-assets'),
     getDataAssetsByActivity: (id: string) => fetchJson(`/api/data-assets/activity/${id}`),
+    getUnmappedDiscoveries: () => fetchJson('/api/discovery/unmapped'),
+    linkDiscoveryToAsset: (assetId: string, discoveryName: string, type: string) => fetchJson(`/api/data-assets/${assetId}/link_discovery`, {
+        method: 'POST',
+        body: JSON.stringify({ discoveryName, type })
+    }),
 
     // Hierarchy
     getSectors: () => fetchJson('/api/hierarchy/sectors'),
