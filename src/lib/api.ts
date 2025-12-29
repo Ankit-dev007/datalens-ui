@@ -59,4 +59,38 @@ export const api = {
     }),
     exportPdfUrl: () => `${API_BASE_URL}/api/export/pdf`,
     exportCsvUrl: () => `${API_BASE_URL}/api/export/csv`,
+
+    // Compliance & Validation
+    getComplianceValidation: () => fetchJson('/api/compliance/validation'),
+    getComplianceSummary: () => fetchJson('/api/compliance/summary'),
+    getPIILineage: (piiType: string) => fetchJson(`/api/compliance/pii-lineage/${piiType}`),
+    getIllegalPII: () => fetchJson('/api/compliance/illegal-pii'),
+    getUnmappedCompliance: () => fetchJson('/api/compliance/unmapped'),
+
+    // Configuration Management (CRUD)
+    config: {
+        // Sectors
+        getSectors: () => fetchJson('/api/config/sectors'),
+        createSector: (data: any) => fetchJson('/api/config/sectors', { method: 'POST', body: JSON.stringify(data) }),
+        updateSector: (id: number, data: any) => fetchJson(`/api/config/sectors/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+        deleteSector: (id: number) => fetchJson(`/api/config/sectors/${id}`, { method: 'DELETE' }),
+
+        // Processes
+        getProcesses: (sectorId?: number) => fetchJson(sectorId ? `/api/hierarchy/processes?sectorId=${sectorId}` : '/api/config/processes'),
+        createProcess: (data: any) => fetchJson('/api/config/processes', { method: 'POST', body: JSON.stringify(data) }),
+        updateProcess: (id: number, data: any) => fetchJson(`/api/config/processes/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+        deleteProcess: (id: number) => fetchJson(`/api/config/processes/${id}`, { method: 'DELETE' }),
+
+        // Sub-Processes
+        getSubProcesses: (processId: number) => fetchJson(`/api/config/sub-processes?processId=${processId}`),
+        createSubProcess: (data: any) => fetchJson('/api/config/sub-processes', { method: 'POST', body: JSON.stringify(data) }),
+        updateSubProcess: (id: number, data: any) => fetchJson(`/api/config/sub-processes/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+        deleteSubProcess: (id: number) => fetchJson(`/api/config/sub-processes/${id}`, { method: 'DELETE' }),
+
+        // Activity Templates
+        getActivityTemplates: (subProcessId: number) => fetchJson(`/api/config/activity-templates?subProcessId=${subProcessId}`),
+        createActivityTemplate: (data: any) => fetchJson('/api/config/activity-templates', { method: 'POST', body: JSON.stringify(data) }),
+        updateActivityTemplate: (id: number, data: any) => fetchJson(`/api/config/activity-templates/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+        deleteActivityTemplate: (id: number) => fetchJson(`/api/config/activity-templates/${id}`, { method: 'DELETE' }),
+    }
 };

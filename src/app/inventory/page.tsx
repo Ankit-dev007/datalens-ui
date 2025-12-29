@@ -128,7 +128,7 @@ export default function DataAssetInventoryPage() {
             ) : (
                 <div className="bg-white rounded-lg shadow overflow-hidden">
                     <div className="p-4 bg-yellow-50 border-b border-yellow-100 text-yellow-800 text-sm">
-                        These items were discovered by scanners but are not linked to any Governance Data Asset. Link them to ensure compliance.
+                        These items were discovered by scanners. <span className="font-bold">Auto-linked</span> items are suggested based on name matching.
                     </div>
                      <table className="min-w-full divide-y divide-gray-200 text-sm">
                         <thead className="bg-gray-50">
@@ -142,15 +142,34 @@ export default function DataAssetInventoryPage() {
                         <tbody className="divide-y divide-gray-100">
                             {discoveries.map((item, idx) => (
                                 <tr key={idx} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4 font-medium text-gray-900">{item.name}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-900">
+                                        {item.name}
+                                        {item.autoLinkedAsset && (
+                                            <span className="ml-2 bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded-full border border-blue-200">
+                                                Auto-Linked: {item.autoLinkedAsset}
+                                            </span>
+                                        )}
+                                    </td>
                                     <td className="px-6 py-4"><span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">{item.type}</span></td>
                                     <td className="px-6 py-4 text-gray-500">{item.storage}</td>
-                                    <td className="px-6 py-4 text-right">
+                                    <td className="px-6 py-4 text-right space-x-2">
+                                        {item.autoLinkedAssetId ? (
+                                             <button 
+                                                onClick={() => {
+                                                    setSelectedAssetId(item.autoLinkedAssetId);
+                                                    setSelectedDiscovery(item);
+                                                    handleLinkSubmit(); // Direct confirm
+                                                }}
+                                                className="text-green-600 hover:text-green-800 font-medium hover:underline text-xs bg-green-50 px-2 py-1 rounded border border-green-200"
+                                            >
+                                                Confirm Auto-Link
+                                            </button>
+                                        ) : null}
                                         <button 
                                             onClick={() => openLinkModal(item)}
                                             className="text-blue-600 hover:text-blue-800 font-medium hover:underline"
                                         >
-                                            Link to Asset
+                                            {item.autoLinkedAssetId ? 'Edit' : 'Link to Asset'}
                                         </button>
                                     </td>
                                 </tr>

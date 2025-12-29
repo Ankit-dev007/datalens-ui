@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, FileScan, Database, MessageSquare, Network, Settings, Shield, List, ClipboardList, UploadCloud } from "lucide-react"
+import { LayoutDashboard, FileScan, Database, MessageSquare, Network, Settings, Shield, List, ClipboardList, UploadCloud, ShieldCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navigation = [
@@ -14,6 +14,7 @@ const navigation = [
   { name: "ROPA & Mapping", href: "/activities", icon: List }, // Using List icon for Activities
   { name: "Manual Entry", href: "/manual", icon: ClipboardList },
   { name: "Inventory", href: "/inventory", icon: Database },
+  { name: "Compliance", href: "/compliance", icon: ShieldCheck },
   { name: "Import", href: "/import", icon: UploadCloud },
 ]
 
@@ -56,6 +57,13 @@ export function Sidebar() {
         >
           <Settings className="w-4 h-4" />
           Settings
+        </Link>
+        <Link
+          href="/config"
+          className="flex items-center gap-3 px-3 py-2 text-sm font-medium text-muted-foreground rounded-md hover:bg-accent hover:text-accent-foreground"
+        >
+          <Settings className="w-4 h-4" />
+          Configuration
         </Link>
       </div>
     </div>

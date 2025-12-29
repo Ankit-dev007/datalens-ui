@@ -55,9 +55,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Prevent hydration mismatch by rendering nothing until mounted
     // Or render children without specific theme class logic if critical
     // Ideally, we want to render children but avoid flash.
-    if (!mounted) {
-        return <>{children}</>;
-    }
+    // Prevent hydration mismatch by rendering nothing until mounted
+    // Or render children without specific theme class logic if critical
+    // Ideally, we want to render children but avoid flash.
+    // FIX: Always provide context so useTheme doesn't crash during SSR
+    // if (!mounted) {
+    //    return <>{children}</>;
+    // }
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
