@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, FileScan, Database, MessageSquare, Network, Settings, Shield, List, ClipboardList, UploadCloud, ShieldCheck } from "lucide-react"
+import { LayoutDashboard, FileScan, Database, MessageSquare, Network, Settings, Shield, List, ClipboardList, UploadCloud, ShieldCheck, User, Inbox } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navigation = [
@@ -16,6 +16,8 @@ const navigation = [
   { name: "Inventory", href: "/inventory", icon: Database },
   { name: "Compliance", href: "/compliance", icon: ShieldCheck },
   { name: "Import", href: "/import", icon: UploadCloud },
+  { name: "Data Subjects", href: "/data-subjects", icon: User },
+  { name: "DSAR Requests", href: "/dsar", icon: Inbox },
 ]
 
 export function Sidebar() {
