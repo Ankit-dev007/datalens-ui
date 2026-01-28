@@ -33,6 +33,13 @@ export const api = {
     askQuestion: (question: string) => fetchJson('/api/analyze', { method: 'POST', body: JSON.stringify({ query: question }) }),
     getGraph: () => fetchJson('/api/graph'),
 
+    // Confirmation Flow
+    getPendingConfirmations: () => fetchJson('/api/confirmations/pending'),
+    getResolvedConfirmations: () => fetchJson('/api/confirmations/resolved'),
+    getDiscardedConfirmations: () => fetchJson('/api/confirmations/discarded'),
+    resolveConfirmation: (payload: { id: string, decision: 'YES' | 'NO' | 'NOT_SURE' }) => fetchJson('/api/confirmations/resolve', { method: 'POST', body: JSON.stringify(payload) }),
+    overrideConfirmation: (payload: { id: string, decision: 'YES' | 'NO', reason: string, user: string }) => fetchJson('/api/confirmations/override', { method: 'POST', body: JSON.stringify(payload) }),
+
     // Module 2: Data Discovery & Mapping
     saveActivity: (payload: any) => fetchJson('/api/activities', { method: 'POST', body: JSON.stringify(payload) }), // Note: Need to create this endpoint in backend if not exists, or reuse save logic
     getActivities: () => fetchJson('/api/activities'), // Same note

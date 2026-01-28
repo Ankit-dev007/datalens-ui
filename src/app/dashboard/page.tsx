@@ -42,7 +42,9 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">Compliance Dashboard</h1>
+      <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold tracking-tight">Compliance Dashboard</h1>
+      </div>
       
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

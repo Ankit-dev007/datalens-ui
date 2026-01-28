@@ -28,6 +28,8 @@ import {
 import { api } from "@/lib/api";
 import { Loader2, Database } from "lucide-react";
 
+import { ConfirmationList } from "@/components/ConfirmationList";
+
 export default function DBScanPage() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<any[]>([]);
@@ -46,6 +48,9 @@ export default function DBScanPage() {
   const [pdfName, setPdfName] = useState<string>("");
   const [showPreview, setShowPreview] = useState(false);
 
+  // NEW → REFRESH TRIGGER FOR CONFIRMATIONS
+  const [scanTimestamp, setScanTimestamp] = useState(0);
+
   const handleInputChange = (field: string, value: string) => {
     setCredentials((prev) => ({ ...prev, [field]: value }));
   };
@@ -63,6 +68,9 @@ export default function DBScanPage() {
 
       const data = res.results || [];
       setResults(data);
+      
+      // Trigger refresh of pending confirmations
+      setScanTimestamp(Date.now());
 
       // save PDF from backend response
       if (res.pdfBase64) {
@@ -79,6 +87,9 @@ export default function DBScanPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold tracking-tight">Database Scanner</h1>
+      
+      {/* PII CONFIRMATION FLOW */}
+      {/* <ConfirmationList refreshTrigger={scanTimestamp} /> */}
 
       <Card>
         <CardHeader>

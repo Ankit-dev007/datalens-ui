@@ -15,6 +15,7 @@ const navigation = [
   { name: "Manual Entry", href: "/manual", icon: ClipboardList },
   { name: "Inventory", href: "/inventory", icon: Database },
   { name: "Compliance", href: "/compliance", icon: ShieldCheck },
+  { name: "PII Reviews", href: "/reviews", icon: ShieldCheck }, // Reusing ShieldCheck or similar
   { name: "Import", href: "/import", icon: UploadCloud },
   { name: "Data Subjects", href: "/data-subjects", icon: User },
   { name: "DSAR Requests", href: "/dsar", icon: Inbox },
